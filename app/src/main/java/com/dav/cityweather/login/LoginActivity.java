@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Adapt
     public void initComponent() {
         mProgressBar =(ProgressBar)this.findViewById(R.id.progressLoadCity);
         AutoCompleteTextView autoCompleteTextView =(AutoCompleteTextView)this.findViewById(R.id.autoCompleteGooglePlace);
+        autoCompleteTextView.setText("Mos");
         autoCompleteTextView.setAdapter(mLoginPresenter.getArrayAdapter(this,R.layout.list_item_autocomplete));
         autoCompleteTextView.setOnItemClickListener(this);
     }

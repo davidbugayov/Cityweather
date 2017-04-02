@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 
 
-class GooglePlacesAutocompleteAdapter extends ArrayAdapter implements Filterable {
+public class GooglePlacesAutocompleteAdapter extends ArrayAdapter implements Filterable {
     private ArrayList mResultList;
     private AutoCompleteRequest mAutoCompleteRequest;
 
