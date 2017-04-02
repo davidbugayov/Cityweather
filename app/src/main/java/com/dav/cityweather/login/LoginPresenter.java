@@ -8,5 +8,6 @@ import android.widget.ArrayAdapter;
  */
 
 public interface LoginPresenter {
-    public ArrayAdapter getArrayAdapter(Context context, int textViewResourceId);
+    ArrayAdapter getArrayAdapter(Context context, int textViewResourceId);
+    void onDestroy();
 }

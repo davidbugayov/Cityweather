@@ -8,5 +8,10 @@ import android.widget.ArrayAdapter;
  */
 
 public interface LoginInteractor {
+    interface OnLoadDataListener {
+        void onStartLoad();
+        void onLoadFailed();
+        void onSuccess();
+    }
     ArrayAdapter getGooglePlaceAutoComplete(Context context, int textViewResourceId);
 }

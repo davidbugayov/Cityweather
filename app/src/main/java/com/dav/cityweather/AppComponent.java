@@ -5,4 +5,8 @@ package com.dav.cityweather;
  */
 
 public interface AppComponent {
+    void showDialogGPSIsUnActive();
+    void hideDialogGPSISUnActive();
+    void showSplashScreen();
+    void hideSplashScreen();
 }

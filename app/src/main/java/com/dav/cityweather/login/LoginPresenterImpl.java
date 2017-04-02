@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter;
  * Created by dav on 31.03.17.
  */
 
- class LoginPresenterImpl implements LoginPresenter {
+ class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLoadDataListener{
     private LoginView mLoginView;
     private LoginInteractor mLoginInteractor;
 
@@ -22,4 +22,29 @@ import android.widget.ArrayAdapter;
        return mLoginInteractor.getGooglePlaceAutoComplete(context,textViewResourceId);
     }
 
+   @Override
+   public void onDestroy() {
+      mLoginView=null;
+   }
+
+    @Override
+    public void onStartLoad() {
+        if(mLoginView!=null){
+            mLoginView.showProgress();
+        }
+    }
+
+    public void onLoadFailed() {
+        if(mLoginView!=null){
+            mLoginView.hideProgress();
+            mLoginView.showError();
+        }
+    }
+
+    @Override
+    public void onSuccess() {
+        if(mLoginView!=null){
+            mLoginView.hideProgress();
+        }
+    }
 }

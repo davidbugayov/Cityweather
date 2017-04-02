@@ -6,9 +6,8 @@ package com.dav.cityweather.login;
  */
 
 interface LoginView  {
-    void initAutoComplete();
+    void initComponent();
     void showProgress();
     void hideProgress();
-    void showDialogGPSIsUnActive();
-    void hideDialogGPSISUnActive();
+    void showError();
 }

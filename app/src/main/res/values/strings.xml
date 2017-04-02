@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Cityweather</string>
     <string name="key_map">AIzaSyDoOTpo1GGM_zbcLL83ZNGyItX1n7A48pk</string>
+    <string name="failed_load_city">Произошла ошибка</string>
 </resources>

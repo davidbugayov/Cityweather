@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <AutoCompleteTextView
-    android:id="@+id/autoCompleteGooglePlace"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:text="Please enter your place" >
-    <requestFocus />
-</AutoCompleteTextView>
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true">
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteGooglePlace"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            tools:text="Please enter your place"
+            android:layout_weight="2">
+            <requestFocus />
+        </AutoCompleteTextView>
+        <ProgressBar
+            android:id="@+id/progressLoadCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            />
+    </LinearLayout>
 </RelativeLayout>
