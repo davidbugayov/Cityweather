@@ -1,4 +1,4 @@
-package com.example.dav.cityweather;
+package com.dav.cityweather;
 
 import org.junit.Test;
 
