@@ -1,8 +1,11 @@
 package com.dav.cityweather.login;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -13,24 +16,42 @@ import com.example.dav.cityweather.R;
  * Created by dav on 30.03.17.
  */
 
-public class LoginActivity extends AppCompatActivity implements LoginView, AdapterView.OnItemClickListener {
+public class LoginActivity extends AppCompatActivity implements ILoginView, AdapterView.OnItemClickListener {
 
 
-    private LoginPresenter mLoginPresenter;
+    private ILoginPresenter mILoginPresenter;
     private  ProgressBar mProgressBar;
+    private CityListAdapter cityListAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mLoginPresenter = new LoginPresenterImpl(this);
+        mILoginPresenter = new LoginPresenterImpl(this,this);
         initComponent();
     }
 
     @Override
     public void initComponent() {
         mProgressBar =(ProgressBar)this.findViewById(R.id.progressLoadCity);
+        cityListAdapter = new CityListAdapter(this,R.layout.list_item_autocomplete,mILoginPresenter);
         AutoCompleteTextView autoCompleteTextView =(AutoCompleteTextView)this.findViewById(R.id.autoCompleteGooglePlace);
-        autoCompleteTextView.setAdapter(mLoginPresenter.getArrayAdapter(this,R.layout.list_item_autocomplete));
+        autoCompleteTextView.setAdapter(cityListAdapter);
+        autoCompleteTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mILoginPresenter.filter().filter(s);
+            }
+        });
         autoCompleteTextView.setOnItemClickListener(this);
     }
 
@@ -41,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Adapt
 
     @Override
     public void onDestroy(){
-        mLoginPresenter.onDestroy();
+        mILoginPresenter.onDestroy();
         super.onDestroy();
     }
 
@@ -60,5 +81,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Adapt
         Toast.makeText(this,this.getString(R.string.failed_load_city),Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public CityListAdapter getAdapter() {
+        return cityListAdapter;
+    }
 }
 

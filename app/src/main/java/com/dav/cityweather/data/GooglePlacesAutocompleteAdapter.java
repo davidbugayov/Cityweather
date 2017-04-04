@@ -40,10 +40,7 @@ public class GooglePlacesAutocompleteAdapter extends ArrayAdapter implements Fil
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults filterResults = new FilterResults();
                 if (constraint != null) {
-                    // Retrieve the autocomplete results.
                     mResultList = mAutoCompleteRequest.autocomplete(constraint.toString());
-
-                    // Assign the data to the FilterResults
                     filterResults.values = mResultList;
                     filterResults.count = mResultList.size();
                 }

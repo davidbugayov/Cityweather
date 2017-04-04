@@ -1,4 +1,4 @@
-package com.dav.cityweather.data;
+package com.dav.cityweather.login;
 
 import android.content.Context;
 import android.util.Log;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * Created by dav on 03.04.17.
  */
 
-public class AutoCompleteRequest {
+public class AutoCompleteRequest1 {
 
     private static final String LOG_TAG = "GoogleAutocomplete";
     private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
@@ -29,7 +29,7 @@ public class AutoCompleteRequest {
     private static final String OUT_JSON = "/json";
     private static  String API_KEY = "";
 
-    AutoCompleteRequest(Context context){
+    AutoCompleteRequest1(Context context){
         API_KEY= context.getString(R.string.key_map);
     }
 
