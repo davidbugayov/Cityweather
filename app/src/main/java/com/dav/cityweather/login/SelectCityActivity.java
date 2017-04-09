@@ -5,35 +5,29 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.dav.cityweather.basecore.CityWeatherContentObserver;
 import com.example.dav.cityweather.R;
 
 /**
  * Created by dav on 30.03.17.
  */
 
-public class LoginActivity extends AppCompatActivity implements ILoginView, AdapterView.OnItemClickListener {
+public class SelectCityActivity extends AppCompatActivity implements ISelectCityView, AdapterView.OnItemClickListener {
 
 
-    private ILoginPresenter mILoginPresenter;
+    private SelectCityPresenterImpl mISelectCityPresenter;
     private  ProgressBar mProgressBar;
     private CityListAdapter cityListAdapter;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        mILoginPresenter = new LoginPresenterImpl(this,this);
-        initComponent();
-    }
+    private CityWeatherContentObserver cityWeatherContentObserver;
 
     @Override
     public void initComponent() {
         mProgressBar =(ProgressBar)this.findViewById(R.id.progressLoadCity);
-        cityListAdapter = new CityListAdapter(this,R.layout.list_item_autocomplete,mILoginPresenter);
+        cityListAdapter = new CityListAdapter(this,R.layout.list_item_autocomplete, mISelectCityPresenter);
         AutoCompleteTextView autoCompleteTextView =(AutoCompleteTextView)this.findViewById(R.id.autoCompleteGooglePlace);
         autoCompleteTextView.setAdapter(cityListAdapter);
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
@@ -49,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, Adap
 
             @Override
             public void afterTextChanged(Editable s) {
-                mILoginPresenter.filter().filter(s);
+                mISelectCityPresenter.filter().filter(s);
             }
         });
         autoCompleteTextView.setOnItemClickListener(this);
@@ -61,8 +55,23 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, Adap
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        mISelectCityPresenter = new SelectCityPresenterImpl(this,this);
+        cityWeatherContentObserver = new CityWeatherContentObserver(mISelectCityPresenter);
+        initComponent();
+    }
+
+    @Override
+    public void onResume(){
+        getContentResolver().registerContentObserver();
+        super.onResume();
+    }
+
+    @Override
     public void onDestroy(){
-        mILoginPresenter.onDestroy();
+        mISelectCityPresenter.onDestroy();
         super.onDestroy();
     }
 

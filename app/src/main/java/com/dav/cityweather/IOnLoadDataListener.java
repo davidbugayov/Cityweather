@@ -1,4 +1,4 @@
-package com.dav.cityweather.login;
+package com.dav.cityweather;
 
 /**
  * Created by dav on 04.04.17.

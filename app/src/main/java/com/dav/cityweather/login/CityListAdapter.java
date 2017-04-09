@@ -14,10 +14,10 @@ import java.util.ArrayList;
 public class CityListAdapter extends ArrayAdapter {
 
     private ArrayList mResultList;
-    private ILoginPresenter mIloginPresenter;
-    public CityListAdapter(@NonNull Context context, @LayoutRes int resource, ILoginPresenter iLoginPresenter) {
+    private ISelectCityPresenter mIloginPresenter;
+    public CityListAdapter(@NonNull Context context, @LayoutRes int resource, ISelectCityPresenter iSelectCityPresenter) {
         super(context, resource);
-        mIloginPresenter=iLoginPresenter;
+        mIloginPresenter= iSelectCityPresenter;
     }
 
     public void setArray ( ArrayList resultList){

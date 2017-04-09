@@ -7,6 +7,6 @@ import android.widget.ArrayAdapter;
  * Created by dav on 31.03.17.
  */
 
-public interface ILoginInteractor {
+public interface ISelectCItyInteractor {
     ArrayAdapter getGooglePlaceAutoComplete(Context context, int textViewResourceId);
 }

@@ -39,11 +39,11 @@ public class AutoCompleteRequest1 {
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
         try {
-            StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
-            sb.append("?key=" + API_KEY);
-            sb.append("&input=" + URLEncoder.encode(input, "utf8"));
-            URL url = new URL(sb.toString());
-
+            StringBuilder request = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
+            request.append("?key=" + API_KEY);
+            request.append("&input=" + URLEncoder.encode(input, "utf8"));
+            URL url = new URL(request.toString());
+            String st= "http://maps.googleapis.com/maps/api/geocode/json?address=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0,%20%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0,%20%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F";
             conn = (HttpURLConnection) url.openConnection();
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
 
