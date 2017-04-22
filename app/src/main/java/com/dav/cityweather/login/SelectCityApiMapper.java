@@ -21,6 +21,7 @@ public class SelectCityApiMapper {
     private static String API_KEY = "AIzaSyDoOTpo1GGM_zbcLL83ZNGyItX1n7A48pk";
 
 
+    @SuppressWarnings("uncheked")
     public ArrayList<String> getCity(String symbols) {
         ArrayList<String> city = new ArrayList<>();
         HttpConnector httpConnector = new HttpConnector();
@@ -29,7 +30,7 @@ public class SelectCityApiMapper {
             StringBuilder request = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
             request.append("?key=" + API_KEY);
             request.append("&input=" + URLEncoder.encode(symbols, "utf8"));
-            selectCityResponse.setDescription((String)httpConnector.sendReciveData(request.toString()););
+            selectCityResponse.setDescription((ArrayList<String>) httpConnector.sendReciveData(request.toString()));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

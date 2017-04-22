@@ -22,6 +22,11 @@ public class SelectCityResponse {
 
     @JsonSetter("description")
     public void setDescription(ArrayList<String>  description) {
-        this.description = description;
+        if (description != null) {
+            this.description = description;
+        } else {
+            this.description  = new ArrayList<>();
+        }
+
     }
 }

@@ -14,10 +14,8 @@ import java.util.ArrayList;
 public class CityListAdapter extends ArrayAdapter {
 
     private ArrayList mResultList;
-    private ISelectCityPresenter mIloginPresenter;
-    public CityListAdapter(@NonNull Context context, @LayoutRes int resource, ISelectCityPresenter iSelectCityPresenter) {
+    public CityListAdapter(@NonNull Context context, @LayoutRes int resource) {
         super(context, resource);
-        mIloginPresenter= iSelectCityPresenter;
     }
 
     public void setArray ( ArrayList resultList){

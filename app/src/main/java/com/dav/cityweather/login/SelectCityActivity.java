@@ -22,12 +22,11 @@ public class SelectCityActivity extends AppCompatActivity implements ISelectCity
     private SelectCityPresenterImpl mISelectCityPresenter;
     private  ProgressBar mProgressBar;
     private CityListAdapter cityListAdapter;
-    private CityWeatherContentObserver cityWeatherContentObserver;
 
     @Override
     public void initComponent() {
         mProgressBar =(ProgressBar)this.findViewById(R.id.progressLoadCity);
-        cityListAdapter = new CityListAdapter(this,R.layout.list_item_autocomplete, mISelectCityPresenter);
+        cityListAdapter = new CityListAdapter(this,R.layout.list_item_autocomplete);
         AutoCompleteTextView autoCompleteTextView =(AutoCompleteTextView)this.findViewById(R.id.autoCompleteGooglePlace);
         autoCompleteTextView.setAdapter(cityListAdapter);
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
@@ -59,19 +58,16 @@ public class SelectCityActivity extends AppCompatActivity implements ISelectCity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mISelectCityPresenter = new SelectCityPresenterImpl(this,this);
-        cityWeatherContentObserver = new CityWeatherContentObserver(mISelectCityPresenter);
         initComponent();
     }
 
     @Override
     public void onResume(){
-        getContentResolver().registerContentObserver();
         super.onResume();
     }
 
     @Override
     public void onDestroy(){
-        mISelectCityPresenter.onDestroy();
         super.onDestroy();
     }
 

@@ -1,9 +1,8 @@
 package com.dav.cityweather.login;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import android.net.Uri;
 import android.widget.ArrayAdapter;
-import android.widget.Filter;
 
 import java.util.ArrayList;
 
@@ -11,6 +10,7 @@ import java.util.ArrayList;
  * Created by dav on 31.03.17.
  */
 
-public interface ISelectCityPresenter {
-    Filter filter();
+public interface ISelectCItyManager {
+   ArrayList<String> getCity(java.lang.String symbols);
+    Uri getUriCity();
 }

@@ -23,11 +23,12 @@ public class CityWeatherContentObserver extends ContentObserver {
 
     @Override
     public void onChange(boolean selfChange) {
-        mListener.onChange(selfChange, null);
+        this.onChange(selfChange, null);
     }
 
     @Override
     public void onChange(boolean selfChange, Uri uri) {
-        mListener.onChange(selfChange, uri);
+        if(mListener!= null)
+            mListener.onChange();
     }
 }
